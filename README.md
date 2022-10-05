@@ -24,6 +24,14 @@ struct Inventory {
 
 Where `Item`, `Owner`, and `Bucket` can be defined as unique entity kinds.
 
+### Integration
+
+Add to `Cargo.toml` (replace * with your desired version):
+```
+[dependencies]
+bevy_kindly = "*"
+```
+
 ### Usage
 
 To define an entity kind, this boilerplate is currently needed:
