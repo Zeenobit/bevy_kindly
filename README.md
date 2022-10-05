@@ -26,7 +26,7 @@ Where `Item`, `Owner`, and `Bucket` can be defined as unique entity kinds.
 
 ### Usage
 
-To define an entity kind, this boiletplate is currently needed:
+To define an entity kind, this boilerplate is currently needed:
 ```rust
 struct Owner(Entity);
 
@@ -115,3 +115,8 @@ https://github.com/bevyengine/bevy/issues/1634
 
 - There is no safety against direct removal of entity kind components.
 - If an entity has multiple kinds, any intersection of the expected components can cause unwanted overrides.
+
+### TODO
+
+- [ ] Macro for entity kind boilerplate
+- [ ] `Bundle` and `DefaultBundle` do not need to be defined if `#![feature(associated_type_defaults)]` is stabilized
