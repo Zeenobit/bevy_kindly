@@ -137,11 +137,10 @@ let person: Option<Person> = world.entity(entity).try_with_kind::<Person>();
 
 ### Cost
 
-Almost zero.
+The main cost is implementing the `EntityKind` trait in your project as needed.
 
-The only real cost is defining the various entity kinds in your project.
 Beyond that, the only runtime cost is the addition of a private component with some `PhantomData<T>` that is added to mark the kind of an entity.
-There is no need for any systems or type registration.
+There is no need for any systems or type registration at runtime.
 
 ### Limitations
 
