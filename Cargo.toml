@@ -1,5 +1,10 @@
 [package]
 name = "bevy_kindly"
+license-file = "LICENSE.md"
+description = "Minimalistic implementation of entity kinds for Bevy ECS."
+homepage = "https://github.com/Zeenobit/bevy_kindly"
+repository = "https://github.com/Zeenobit/bevy_kindly"
+readme = "README.md"
 version = "0.1.0"
 edition = "2021"
 
