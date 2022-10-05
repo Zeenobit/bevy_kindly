@@ -1,18 +1,25 @@
 use bevy::prelude::*;
 use bevy_kindly::*;
 
+// A `Person` is a kind of entity.
+// Deriving `Clone`, `Copy`, `PartialEq`, and `Eq` is not required, but it's often convenient.
 #[derive(Clone, Copy, PartialEq, Eq)]
 struct Person(Entity);
 
+// Define the entity kind:
 impl EntityKind for Person {
+    // Components inserted into every `Person` by default:
     type DefaultBundle = (Friends,);
 
+    // Components that must be provided to spawn a `Person`:
     type Bundle = (Name, Age);
 
+    // Boilerplate :( (WIP)
     unsafe fn from_entity_unchecked(entity: Entity) -> Self {
         Self(entity)
     }
 
+    // Boilerplate :( (WIP)
     fn entity(&self) -> Entity {
         self.0
     }
@@ -24,7 +31,9 @@ struct Friends(Vec<Person>);
 #[derive(Component, Clone)]
 struct Age(u32);
 
+// Some commands only `Person` entities can invoke:
 trait PersonCommands {
+    // Only people can be friends with each other
     fn add_friend(self, friend: Person);
 }
 
