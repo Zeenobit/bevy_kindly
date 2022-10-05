@@ -12,3 +12,6 @@ edition = "2021"
 
 [dependencies]
 bevy_ecs = "0.8.*"
+
+[dev-dependencies]
+bevy = "0.8.0"
