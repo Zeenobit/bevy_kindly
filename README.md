@@ -120,3 +120,4 @@ https://github.com/bevyengine/bevy/issues/1634
 
 - [ ] Macro for entity kind boilerplate
 - [ ] `Bundle` and `DefaultBundle` do not need to be defined if `#![feature(associated_type_defaults)]` is stabilized
+- [ ] More documentation/examples/tests
