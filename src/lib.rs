@@ -6,7 +6,7 @@ use bevy_ecs::query::WorldQuery;
 use bevy_ecs::system::EntityCommands;
 use bevy_ecs::world::EntityRef;
 
-pub use macros::EntityKind;
+pub use bevy_kindly_macros::EntityKind;
 
 ///
 /// Some kind of an [`Entity`] with an expected set of components.
