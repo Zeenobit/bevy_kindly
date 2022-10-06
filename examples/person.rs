@@ -4,8 +4,8 @@ use bevy_kindly::*;
 // A `Person` is a kind of entity.
 // Deriving `Clone`, `Copy`, `PartialEq`, and `Eq` is not required, but it's often convenient.
 #[derive(EntityKind, Clone, Copy, PartialEq, Eq)]
+#[default_components(Friends)]
 #[components(Name, Age)]
-#[defaults(Friends)]
 struct Person(Entity);
 
 #[derive(Component, Default)]

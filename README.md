@@ -45,8 +45,8 @@ bevy_kindly = "*"
 To define an entity kind, you can derive `EntityKind`:
 ```rust
 #[derive(EntityKind)]
-#[defaults(Friends)]     // Components inserted into every `Person` by default
-#[components(Name, Age)] // Components that must be provided to spawn a `Person`
+#[default_components(Friends)] // Components inserted into every `Person` by default
+#[components(Name, Age)]       // Components that must be provided to spawn a `Person`
 struct Person(Entity);
 ```
 

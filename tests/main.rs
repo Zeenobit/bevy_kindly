@@ -24,7 +24,7 @@ struct Capacity(usize);
 /// An [`EntityKind`] which can store [`Containable`] entities.
 ///
 #[derive(EntityKind)]
-#[defaults(Items)]
+#[default_components(Items)]
 #[components(Capacity)]
 struct Container(Entity);
 
