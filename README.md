@@ -49,7 +49,6 @@ To define an entity kind, you can derive `EntityKind`:
 #[components(Name, Age)] // Components that must be provided to spawn a `Person`
 struct Person(Entity);
 ```
-Ideally, this should be wrapped into a macro of some kind. I'm still working on that.
 
 Entities can be spawned with a kind in 3 separate ways, all of which are identical in underlying implementation.
 They can either be spawned using `spawn_with_kind<T>`:
