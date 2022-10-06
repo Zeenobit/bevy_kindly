@@ -42,27 +42,12 @@ bevy_kindly = "*"
 
 ### Usage
 
-To define an entity kind, this boilerplate is currently needed:
+To define an entity kind, you can derive `EntityKind`:
 ```rust
+#[derive(EntityKind)]
+#[defaults(Friends)]     // Components inserted into every `Person` by default
+#[components(Name, Age)] // Components that must be provided to spawn a `Person`
 struct Person(Entity);
-
-impl EntityKind for Person {
-    // Components inserted into every `Person` by default:
-    type DefaultBundle = (Friends,);
-
-    // Components that must be provided to spawn a `Person`:
-    type Bundle = (Name, Age);
-
-    // Boilerplate
-    unsafe fn from_entity_unchecked(entity: Entity) -> Self {
-        Self(entity)
-    }
-
-    // Boilerplate
-    fn entity(&self) -> Entity {
-        self.0
-    }
-}
 ```
 Ideally, this should be wrapped into a macro of some kind. I'm still working on that.
 
@@ -149,6 +134,6 @@ There is no need for any systems or type registration at runtime.
 
 ### TODO
 
-- [ ] Macro for entity kind boilerplate
+- [x] Macro for entity kind boilerplate
 - [ ] `Bundle` and `DefaultBundle` do not need to be defined if `#![feature(associated_type_defaults)]` is stabilized
 - [ ] More documentation/examples/tests

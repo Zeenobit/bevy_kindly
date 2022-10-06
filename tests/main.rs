@@ -5,21 +5,8 @@ use bevy_ecs::prelude::*;
 ///
 /// An [`EntityKind`] which can be inserted into a [`Container`].
 ///
+#[derive(EntityKind)]
 struct Containable(Entity);
-
-impl EntityKind for Containable {
-    type DefaultBundle = ();
-
-    type Bundle = ();
-
-    unsafe fn from_entity_unchecked(entity: Entity) -> Self {
-        Self(entity)
-    }
-
-    fn entity(&self) -> Entity {
-        self.0
-    }
-}
 
 ///
 /// Collection of [`Containable`] entities currently stored inside a [`Container`].
@@ -36,25 +23,14 @@ struct Capacity(usize);
 ///
 /// An [`EntityKind`] which can store [`Containable`] entities.
 ///
+#[derive(EntityKind)]
+#[defaults(Items)]
+#[components(Capacity)]
 struct Container(Entity);
-
-impl EntityKind for Container {
-    type DefaultBundle = (Items,);
-
-    type Bundle = (Capacity,);
-
-    unsafe fn from_entity_unchecked(entity: Entity) -> Self {
-        Self(entity)
-    }
-
-    fn entity(&self) -> Entity {
-        self.0
-    }
-}
 
 ///
 /// Extension trait to insert a [`Containable`] entity into a [`Container`].
-/// 
+///
 trait InsertIntoContainer {
     fn insert_into_container(self, container: &Container) -> Self;
 }
@@ -68,7 +44,8 @@ impl InsertIntoContainer for &mut EntityKindCommands<'_, '_, '_, Containable> {
                 .expect("container must have capacity");
             let Items(items) = world
                 .get_mut::<Items>(entity)
-                .expect("container must have items").into_inner();
+                .expect("container must have items")
+                .into_inner();
             if items.len() < capacity {
                 items.push(item);
             }
@@ -76,7 +53,6 @@ impl InsertIntoContainer for &mut EntityKindCommands<'_, '_, '_, Containable> {
         self
     }
 }
-
 
 #[test]
 fn it_works() {
@@ -95,7 +71,9 @@ fn it_works() {
 
     world.execute(|_, mut commands| {
         // Spawn an item, insert it into the container
-        commands.spawn_with_kind::<Containable>(()).insert_into_container(&container);
+        commands
+            .spawn_with_kind::<Containable>(())
+            .insert_into_container(&container);
     });
 
     // Ensure item was inserted
