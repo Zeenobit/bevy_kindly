@@ -57,7 +57,7 @@ You may also use `default_bundle` and `bundle` to define a bundle yourself:
 #[bundle(PersonBundle)]                // Optional: Bundle that must be provided to spawn a `Person`
 struct Person(Entity);
 
-#[derive(Bundle)]
+#[derive(Bundle, Default)]
 struct DefaultPersonBundle {
   friends: Friends,
 };
