@@ -123,18 +123,19 @@ let person: Option<Person> = world.entity(entity).try_with_kind::<Person>();
 
 ### Cost
 
-The main cost is implementing the `EntityKind` trait in your project as needed.
+This implementation works by adding a private component with some `PhantomData<T>` to every entity with kind `T`.
+Beyond that, there is no other runtime cost associated with this. There is no need to register any systems or types.
 
-Beyond that, the only runtime cost is the addition of a private component with some `PhantomData<T>` that is added to mark the kind of an entity.
-There is no need for any systems or type registration at runtime.
+### Examples
+
+In `examples` directory, you can find some examples which outline some use cases:
+
+- [examples/person.rs](https://github.com/Zeenobit/bevy_kindly/blob/master/examples/person.rs)</br>
+  Demonstrates how to use `EntityKind` to create readable and safe references to entities.
+- [examples/navigation.rs](https://github.com/Zeenobit/bevy_kindly/blob/master/examples/navigation.rs)</br>
+  Demonstrates how entities can be queried by `EntityKind` to make strong guarantees about components.
 
 ### Limitations
 
 - There is no safety against direct removal of entity kind components.
 - If an entity has multiple kinds, any intersection of the expected components can cause unwanted overrides.
-
-### TODO
-
-- [x] Macro for entity kind boilerplate
-- [ ] `Bundle` and `DefaultBundle` do not need to be defined if `#![feature(associated_type_defaults)]` is stabilized
-- [ ] More documentation/examples/tests
