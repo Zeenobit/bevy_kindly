@@ -71,7 +71,25 @@ struct PersonBundle {
 
 Note that you may either define `bundle` or `components`, not both. The same rule applies to `default_bundle` and `default_components`.
 
-Alternatively, you may implement `EntityKind` trait manually. See documentation in code for details.
+Alternatively, you could also just implement `EntityKind` trait manually:
+```rust
+struct Person(Entity);
+
+impl EntityKind for Person {
+  type DefaultBundle = (Friends,);
+  type Bundle = (Name, Age);
+  
+  // This function is called by the library to create new instances of this kind, but only when it's actually safe to do so
+  // User should not be calling this function directly, unless in special cases.
+  unsafe fn from_entity_unchecked(entity: Entity) -> Self {
+    Self(entity)
+  }
+  
+  fn entity(&self) -> Entity {
+    self.0
+  }
+}
+```
 
 Entities can be spawned with a kind in 3 separate ways, all of which are identical in underlying implementation.
 They can either be spawned using `spawn_with_kind<T>`:
