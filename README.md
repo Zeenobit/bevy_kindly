@@ -45,12 +45,33 @@ bevy_kindly = "*"
 To define an entity kind, you can derive `EntityKind`:
 ```rust
 #[derive(EntityKind)]
-#[default_components(Friends)] // Components inserted into every `Person` by default
-#[components(Name, Age)]       // Components that must be provided to spawn a `Person`
+#[default_components(Friends)] // Optional: Components inserted into every `Person` by default
+#[components(Name, Age)]       // Optional: Components that must be provided to spawn a `Person`
 struct Person(Entity);
 ```
 
-Alternative, you may implement `EntityKind` trait manually. See documentation in code for details.
+You may also use `default_bundle` and `bundle` to define a bundle yourself:
+```rust
+#[derive(EntityKind)]
+#[default_bundle(DefaultPersonBundle)] // Optional: Bundle inserted into every `Person` by default
+#[bundle(PersonBundle)]                // Optional: Bundle that must be provided to spawn a `Person`
+struct Person(Entity);
+
+#[derive(Bundle)]
+struct DefaultPersonBundle {
+  friends: Friends,
+};
+
+#[derive(Bundle)]
+struct PersonBundle {
+  name: Name,
+  age: Age,
+};
+```
+
+Note that you may either define `bundle` or `components`, not both. The same rule applies to `default_bundle` and `default_components`.
+
+Alternatively, you may implement `EntityKind` trait manually. See documentation in code for details.
 
 Entities can be spawned with a kind in 3 separate ways, all of which are identical in underlying implementation.
 They can either be spawned using `spawn_with_kind<T>`:
@@ -134,6 +155,8 @@ In `examples` directory, you can find some examples which outline some use cases
   Demonstrates how to use `EntityKind` to create readable and safe references to entities.
 - [examples/navigation.rs](https://github.com/Zeenobit/bevy_kindly/blob/master/examples/navigation.rs)</br>
   Demonstrates how entities can be queried by `EntityKind` to make strong guarantees about components.
+- [examples/multiple.rs](https://github.com/Zeenobit/bevy_kindly/blob/master/examples/navigation.rs)</br>
+  Demonstrates how entities can have multiple kinds.
 
 ### Limitations
 
