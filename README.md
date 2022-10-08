@@ -155,7 +155,7 @@ In `examples` directory, you can find some examples which outline some use cases
   Demonstrates how to use `EntityKind` to create readable and safe references to entities.
 - [examples/navigation.rs](https://github.com/Zeenobit/bevy_kindly/blob/master/examples/navigation.rs)</br>
   Demonstrates how entities can be queried by `EntityKind` to make strong guarantees about components.
-- [examples/multiple.rs](https://github.com/Zeenobit/bevy_kindly/blob/master/examples/navigation.rs)</br>
+- [examples/multiple.rs](https://github.com/Zeenobit/bevy_kindly/blob/master/examples/multiple.rs)</br>
   Demonstrates how entities can have multiple kinds.
 
 ### Limitations
