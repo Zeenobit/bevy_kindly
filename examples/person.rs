@@ -1,3 +1,9 @@
+//! This example demonstrates how to define a simple [`EntityKind`].
+//! 
+//! Each [`EntityKind`] is an entity with its own set of required components.
+//! An [`EntityKind`] may be used to reference an [`Entity`] which is expected to have
+//! all the required components.
+
 use bevy::prelude::*;
 use bevy_kindly::*;
 

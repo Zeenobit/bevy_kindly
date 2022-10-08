@@ -1,12 +1,17 @@
+//! This example demonstrates how entities may have multiple kinds.
+//! 
+//! An entity with multiple kinds has all the required components of all of its kinds.
+//! 
+//! NOTE: It is recommended to understand the `person.rs` and `navigation.rs` examples
+//! before going through this one.
+
 use bevy::prelude::*;
 use bevy_kindly::*;
-
-/// NOTE: Refer to `person.rs` and `navigation.rs` before going through this example.
 
 /// Same as `Person` from `person.rs` example, except it uses a named `PersonBundle` to define
 /// the components of a `Person`.
 /// This is needed in order to assign multiple kinds to the person.
-#[derive(EntityKind, Clone, Copy, PartialEq, Eq)]
+#[derive(EntityKind)]
 #[default_components(Friends)]
 #[bundle(PersonBundle)]
 struct Person(Entity);
@@ -41,6 +46,8 @@ struct Clearance(usize);
 
 #[derive(Component, Default, Debug)]
 struct Position(Vec2);
+
+/* ... */
 
 fn main() {
     let mut world = World::default();

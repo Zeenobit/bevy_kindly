@@ -163,11 +163,14 @@ let person: Option<Person> = world.entity(entity).try_with_kind::<Person>();
 ### Cost
 
 This implementation works by adding a private component with some `PhantomData<T>` to every entity with kind `T`.
-Beyond that, there is no other runtime cost associated with this. There is no need to register any systems or types.
+This component is then checked or used as filter by systems as needed in order to guarantee kind correctness.
+Beyond that, there is no other runtime cost associated with this. There is no need to register any additional systems or types.
 
 ### Examples
 
 In `examples` directory, you can find some examples which outline some use cases:
+
+Note: It is recommended that you look at `person.rs` and `navigation.rs` before going through other examples.
 
 - [examples/person.rs](https://github.com/Zeenobit/bevy_kindly/blob/master/examples/person.rs)</br>
   Demonstrates how to use `EntityKind` to create readable and safe references to entities.
@@ -175,6 +178,8 @@ In `examples` directory, you can find some examples which outline some use cases
   Demonstrates how entities can be queried by `EntityKind` to make strong guarantees about components.
 - [examples/multiple.rs](https://github.com/Zeenobit/bevy_kindly/blob/master/examples/multiple.rs)</br>
   Demonstrates how entities can have multiple kinds.
+- [examples/cast.rs](https://github.com/Zeenobit/bevy_kindly/blob/master/examples/cast.rs)</br>
+  Demonstrates how to cast entities between different kinds.
 
 ### Limitations
 
