@@ -86,6 +86,8 @@ where
 
 ///
 /// A [`WorldQuery`] filter for entities with some given [`EntityKind`].
+/// 
+/// Similar to [`With`] in usage.
 ///
 #[derive(WorldQuery)]
 pub struct WithKind<T: EntityKind> {
@@ -93,7 +95,19 @@ pub struct WithKind<T: EntityKind> {
 }
 
 ///
+/// A [`WorldQuery`] filter for entities that were just given a new [`EntityKind`].
+/// 
+/// Similar to [`Added`] in usage.
+///
+#[derive(WorldQuery)]
+pub struct AddedKind<T: EntityKind> {
+    added_kind: Added<Kind<T>>,
+}
+
+///
 /// A [`WorldQuery`] used to query entities with some given [`EntityKind`].
+/// 
+/// Similar to [`Entity`] in usage.
 ///
 #[derive(WorldQuery)]
 pub struct EntityWithKind<T: EntityKind> {
