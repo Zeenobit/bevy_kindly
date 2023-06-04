@@ -54,8 +54,7 @@ fn main() {
 
     // Spawn a Person through direct kind bundle insertion
     let entity = world
-        .spawn()
-        .insert_bundle(KindBundle::<Person>::new(PersonBundle {
+        .spawn(KindBundle::<Person>::new(PersonBundle {
             name: "Alice".into(),
             age: Age(25),
             agent: KindBundle::<Agent>::new((Speed(10.0), Clearance(2))),
