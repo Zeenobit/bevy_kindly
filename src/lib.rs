@@ -86,7 +86,7 @@ where
 
 ///
 /// A [`WorldQuery`] filter for entities with some given [`EntityKind`].
-/// 
+///
 /// Similar to [`With`] in usage.
 ///
 #[derive(WorldQuery)]
@@ -96,7 +96,7 @@ pub struct WithKind<T: EntityKind> {
 
 ///
 /// A [`WorldQuery`] filter for entities that were just given a new [`EntityKind`].
-/// 
+///
 /// Similar to [`Added`] in usage.
 ///
 #[derive(WorldQuery)]
@@ -106,7 +106,7 @@ pub struct AddedKind<T: EntityKind> {
 
 ///
 /// A [`WorldQuery`] used to query entities with some given [`EntityKind`].
-/// 
+///
 /// Similar to [`Entity`] in usage.
 ///
 #[derive(WorldQuery)]
@@ -219,7 +219,7 @@ impl<'w, 's, 'a> InsertKind<'w, 's, 'a> for EntityCommands<'w, 's, 'a> {
         mut self,
         bundle: T::Bundle,
     ) -> EntityKindCommands<'w, 's, 'a, T> {
-        self.insert_bundle(KindBundle::<T>::new(bundle));
+        self.insert(KindBundle::<T>::new(bundle));
         // SAFE: `KindBundle` was just inserted
         unsafe { EntityKindCommands::from_entity_unchecked(self) }
     }
@@ -246,7 +246,7 @@ impl<'w, 's, 'a> KindCommands<'w, 's, 'a> for &'a mut Commands<'w, 's> {
         self,
         bundle: T::Bundle,
     ) -> EntityKindCommands<'w, 's, 'a, T> {
-        self.spawn().insert_kind(bundle)
+        self.spawn_empty().insert_kind(bundle)
     }
 
     fn with_kind<T: EntityKind>(self, kind: &T) -> EntityKindCommands<'w, 's, 'a, T> {
