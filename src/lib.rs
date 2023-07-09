@@ -43,9 +43,7 @@ pub trait EntityKind: 'static + Send + Sync {
 #[derive(Bundle)]
 pub struct KindBundle<T: EntityKind> {
     kind: Kind<T>,
-    #[bundle]
     default_bundle: T::DefaultBundle,
-    #[bundle]
     bundle: T::Bundle,
 }
 

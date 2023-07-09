@@ -74,7 +74,7 @@ fn update_navigation(
 fn main() {
     App::new()
         .add_plugins(DefaultPlugins)
-        .add_startup_system(spawn_agent)
-        .add_system(update_navigation)
+        .add_systems(Startup, spawn_agent)
+        .add_systems(Update, update_navigation)
         .run();
 }

@@ -22,7 +22,6 @@ struct PersonBundle {
     name: Name,
     age: Age,
     // `Person` must also be of kind `Agent`
-    #[bundle]
     agent: KindBundle<Agent>,
 }
 
