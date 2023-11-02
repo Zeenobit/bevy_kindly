@@ -4,6 +4,9 @@ This crate is a minimalistic implementation of [Kinded Entities](https://github.
 
 In summary, it allows the user to define, construct, and query entities of different kinds. Each kind of entity is defined with an expected set of components, and a specialized command queue which may be extended with commands for specific kinds of entities.
 
+### ⚠️ Warning
+This crate has been deprecated in favor of the more simplified and up-to-date version [Moonshine Kind](https://github.com/Zeenobit/moonshine_kind).
+
 This means that instead of writing this... 😵‍💫
 ```rust
 #[derive(Component)]
